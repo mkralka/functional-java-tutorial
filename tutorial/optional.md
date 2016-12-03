@@ -329,4 +329,4 @@ mvn test -Dtest=OptionalsTest#testGetEmployeeContactInformation
 
 ---
 
-[Previous](method_references.md) | [Up](tutorial.md) | [Next](streams.md)
+[Previous](method_references.md) | [Up](start.md) | [Next](streams.md)

@@ -656,4 +656,4 @@ mvn test -Dtest=StreamingTest#testMostSeniorEmployeesStream
 
 ---
 
-[Previous](optional.md) | [Up](tutorial.md) | Next
+[Previous](optional.md) | [Up](start.md) | Next

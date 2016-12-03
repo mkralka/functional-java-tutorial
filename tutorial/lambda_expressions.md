@@ -192,5 +192,5 @@ mvn test -Dtest=LambdaExpressionsTest#testStringMultiplier
 
 ---
 
-[Previous](functional.md) | [Up](tutorial.md) | [Next](method_references.md)
+[Previous](functional.md) | [Up](start.md) | [Next](method_references.md)
 

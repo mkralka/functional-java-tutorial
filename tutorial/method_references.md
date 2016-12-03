@@ -378,4 +378,4 @@ mvn test -Dtest=MethodReferencesTest#testStringCreator
 
 ---
 
-[Previous](lambda_expressions.md) | [Up](tutorial.md) | [Next](optional.md)
+[Previous](lambda_expressions.md) | [Up](start.md) | [Next](optional.md)

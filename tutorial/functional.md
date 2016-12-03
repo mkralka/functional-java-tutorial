@@ -197,4 +197,4 @@ chief Java Language architect, explains it in greater detail on Java's
 
 ---
 
-[Previous](tutorial.md) | [Up](tutorial.md) | [Next](lambda_expressions.md)
+[Previous](start.md) | [Up](start.md) | [Next](lambda_expressions.md)

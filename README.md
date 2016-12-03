@@ -84,22 +84,22 @@ mvn dependency:resolve
 
 ### Step 3: Jump in, feet first!
 
-The tutorial begins [here](instructions/tutorial.md).
+The tutorial begins [here](tutorial/start.md).
 
 #### A note on reading the tutorial offline.
 
 If you would prefer reading the tutorial offline, you have several options:
 
 1. Use your favorite editor/text reader (e.g., vim, less, etc) and open
-   `instructions/tutorial.md`.
+   `tutorial/start.md`.
 2. Use your favorite web browser with support for markdown preview (e.g.,
    [Chrome](https://www.google.com/chrome) with the
    [Markdown Preview Plus](https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl)
-   extension) and open `instructions/tutorial.md`.
+   extension) and open `tutorial/start.md`.
 3. Use your IDE with support for markdown preview (e.g.,
    [Intellij IDEA](https://www.jetbrains.com/idea/) with the
    [Markdown support](https://plugins.jetbrains.com/plugin/7793) plugin) and
-   open `instructions/tutorial.md`.
+   open `tutorial/start.md`.
 
 *Although the entire tutorial is written in markdown (making it possible to
 following using your favorite plain-text reader) you may find it more satisfying
