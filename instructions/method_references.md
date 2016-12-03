@@ -227,7 +227,7 @@ expression.*
 To test your solution, run the predefined unit tests:
 
 ``` bash
-mvn test -Dtest=MethodReferencesTest#testSplitter
+mvn test -Dtest=MethodReferencesTest#testMapSplitter
 ```
 
 #### Hints

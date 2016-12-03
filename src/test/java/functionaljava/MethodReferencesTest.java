@@ -37,7 +37,7 @@ public class MethodReferencesTest {
     }
 
     @Test(dataProvider = "mapSplitter")
-    public void testSplitter(
+    public void testMapSplitter(
             char entrySeparator,
             char keyValueSeparator,
             String input,
@@ -50,7 +50,7 @@ public class MethodReferencesTest {
     }
 
     @DataProvider(name = "mapSplitter")
-    public static Object[][] dataSplitter() {
+    public static Object[][] dataMapSplitter() {
         return new Object[][]{
                 new Object[]{
                         ';',

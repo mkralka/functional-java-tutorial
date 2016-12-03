@@ -15,13 +15,13 @@ remove all empty strings from the list. Code written in the imperative
 void normalizeList(List<String> input) {
     for (ListIterator<String> iter = input.listIterator(); iter.hasNext();) {
         String value = iter.next();
-        String canonicalValue = value.replaceAll("[^a-zA-Z0-9]+", "_");
-        canonicalValue = canonicalValue.replaceAll("(^_+|_+$)", "");
-        canonicalValue = canonicalValue.toLowerCase();
-        if (canonicalValue.isEmpty()) {
+        String normalizedValue = value.replaceAll("[^a-zA-Z0-9]+", "_");
+        normalizedValue = normalizedValue.replaceAll("(^_+|_+$)", "");
+        normalizedValue = normalizedValue.toLowerCase();
+        if (normalizedValue.isEmpty()) {
             iter.remove();
-        } else if (!canonicalValue.equals(value)) {
-            iter.set(canonicalValue);
+        } else if (!normalizedValue.equals(value)) {
+            iter.set(normalizedValue);
         }
     }
 }
