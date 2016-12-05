@@ -16,11 +16,15 @@ public final class LambdaExpressions {
      * @return A unary operator that squares its input.
      */
     public LongUnaryOperator squarer() {
-        // Replace the body of this method with one that returns a unary
-        // operator that squares its input.
+        // Replace the body of this method with one that returns a lambda
+        // expression that accepts a single parameter, x, and returns the square
+        // of x (i.e., x * x).
         //
-        // You should define this as a lambda expression and not an anonymous
-        // class that implements LongUnaryOperator.
+        // Verify your solution:
+        //     mvn test -Dtest=LambdaExpressionsTest#testSquarer
+        //
+        // See the solution:
+        //     tutorial/lambda_expressions/ex001_sol.md
         return null;
     }
 
@@ -32,14 +36,19 @@ public final class LambdaExpressions {
      * base and height.
      */
     public DoubleBinaryOperator triangleArea() {
-        // Replace the body of this method with one that returns a binary
-        // operator that calculates the area of a triangle from the lengths of
-        // its base and height (in that order).
+        // Replace the body of this method with one that returns a lambda
+        // expression taking two parameters that describe the dimensions of
+        // a triangle, base and height, and returns the area of said triangle.
         //
-        // You should define this as a lambda expression and not an anonymous
-        // class that implements DoubleBinaryOperator.
+        // Recall that the area of a triangle can be calculated using
         //
-        // HINT: https://en.wikipedia.org/wiki/Triangle#Computing_the_area_of_a_triangle
+        //     area = 1/2 * base * height.
+        //
+        // Verify your solution:
+        //     mvn test -Dtest=LambdaExpressionsTest#testSquarer
+        //
+        // See the solution:
+        //     tutorial/lambda_expressions/ex002_sol.md
         return null;
     }
 
@@ -53,22 +62,28 @@ public final class LambdaExpressions {
      * @return A unary operator that calculates the nth Fibonacci number given input n.
      */
     public LongUnaryOperator fibonacci() {
-        // Replace the body of this method with one that returns a unary
-        // operator that calculates the nth Fibonacci number. Recall that the
-        // Fibonacci sequence is defined as: f(0) = 0,
-        // f(1) = 1, and f(n) = f(n - 1) + f(n - 2).
+        // Replace the body of this method with one that returns a lambda
+        // expression taking a single parameter, n, and calculates the fib(n)
+        // (the nth number in the Fibonacci sequence).
         //
-        // It may be tempting to write this recursively. The naive recursive
-        // solution is prohibitively expensive (computationally). You will need
-        // to provide an iterative (or tail recursive) solution.
+        // While it might be tempting to write this recursively, the naive
+        // recursive solution is stupendously inefficient. Instead, incorporate
+        // the following iterative solution into your lambda expression:
         //
-        // You should define this as a lambda expression and not an anonymous
-        // class that implements LongUnaryOperator.
+        //     long fib(long n) {
+        //         long a = 0, b = 1;
+        //         for (long i = 0; i < n; ++i) {
+        //             b = b + a;
+        //             a = b - a;
+        //         }
+        //         return a;
+        //     }
         //
-        // HINT: First 21 Fibonacci numbers:
-        //       https://en.wikipedia.org/wiki/Fibonacci_number#List_of_Fibonacci_numbers
-        // HINT: Implementations in various languages:
-        //       https://en.wikibooks.org/wiki/Algorithm_Implementation/Mathematics/Fibonacci_Number_Program#Java
+        // Verify your solution:
+        //     mvn test -Dtest=LambdaExpressionsTest#testFibonacci
+        //
+        // See the solution:
+        //     tutorial/lambda_expressions/ex003_sol.md
         return null;
     }
 
@@ -80,16 +95,15 @@ public final class LambdaExpressions {
      * parameter.
      */
     public BiFunction<String, Integer, String> stringMultiplier() {
-        // Replace the body of this method with one that returns a function (of
-        // arity 2) that returns a the first parameter (a String) repeated as
-        // many times as specified by the second parameter (an Integer).
+        // Replace the body of this method with one that returns a lambda
+        // expression taking two parameters, str and count, and calculates a
+        // string that consists of str repeated count times.
         //
-        // You should define this as a lambda expression and not an anonymous
-        // class that implements BiFunction.
+        // Verify your solution:
+        //     mvn test -Dtest=LambdaExpressionsTest#testStringMultiplier
         //
-        // HINT: java.lang.StringBuilder provides an efficient way to
-        //       dynamically build Strings without creating intermediate
-        //       objects.
+        // See the solution:
+        //     tutorial/lambda_expressions/ex004_sol.md
         return null;
     }
 }

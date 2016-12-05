@@ -1,5 +1,7 @@
 package functionaljava;
 
+import com.google.common.base.Splitter;
+
 import java.util.Collection;
 import java.util.Map;
 import java.util.function.DoubleBinaryOperator;
@@ -20,12 +22,15 @@ public class MethodReferences {
      * from the length of its legs.
      */
     public DoubleBinaryOperator hypotenuse() {
-        // Replace the body of this method with one that creates a reference to
-        // a method that calculates the hypotenuse of a right-angled triangle.
+        // Replace the body of this method with one that returns a reference to
+        // Math.hypot; a method that calculates the hypotenuse of a right-
+        // angled triangle.
         //
-        // You should define this as a static method reference to Math.hypot
-        // (https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html#hypot-double-double-)
-        // and not a lambda expression.
+        // Verify your solution:
+        //     mvn test -Dtest=MethodReferencesTest#testHypotenuse
+        //
+        // See the solution:
+        //     tutorial/method_references/static_ex1_sltn.md
         return null;
     }
 
@@ -50,23 +55,19 @@ public class MethodReferences {
     public Function<String, Map<String, String>> mapSplitter(
             char entrySeparator,
             char keyValueSeparator) {
-        // Replace the body of this method with one that creates a reference to
-        // a method that parses a string into a Map<String, String>>. Entries
-        // should be separated by entrySeparator. The key and value within an
-        // entry should be separated by keyValueSeparator. Whitespace around
-        // separators should be ignored as should empty (whitespace only)
-        // entries.
+        // Replace the body of this method with one that returns a reference to
+        // the split method maxSplitter; a method that will parse a structured
+        // string into a Map.
         //
-        // Use Guava's Splitter
-        // (https://google.github.io/guava/releases/snapshot/api/docs/com/google/common/base/Splitter.html)
-        // to create a MapSplitter
-        // (https://google.github.io/guava/releases/snapshot/api/docs/com/google/common/base/Splitter.MapSplitter.html)
-        // for all the the heavy lifting.
+        // Verify your solution:
+        //     mvn test -Dtest=MethodReferencesTest#testMapSplitter
         //
-        // Your answer should be defined as a bound method reference to
-        // MapSplitter.split
-        // (https://google.github.io/guava/releases/snapshot/api/docs/com/google/common/base/Splitter.MapSplitter.html#split-java.lang.CharSequence-)
-        // and not a lambda expression.
+        // See the solution:
+        //     tutorial/method_references/bound_ex1_sltn.md
+        Splitter.MapSplitter mapSplitter = Splitter.on(entrySeparator)
+                .omitEmptyStrings()
+                .trimResults()
+                .withKeyValueSeparator(Splitter.on(keyValueSeparator).trimResults());
         return null;
     }
 
@@ -76,15 +77,18 @@ public class MethodReferences {
      * @return A function that calculates the length of a {@link Collection}.
      */
     public <T> ToIntFunction<Collection<T>> collectionSizer() {
-        // Replace the body of this method with one that creates a reference to
+        // Replace the body of this method with one that returns a reference to
         // an unbound method that calculates the size of (number of elements in)
-        // a collection.
+        // a Collection.
         //
-        // Your answer should be defined as an unbound method reference.
+        // Since the method reference should be unbound, it must be an instance
+        // method of the Collection class.
         //
-        // HINT: Collection (https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html)
-        //       already has an instance method (Collection.size) that already
-        //       calculates the size of a collection.
+        // Verify your solution:
+        //     mvn test -Dtest=MethodReferencesTest#testCollectionSizer
+        //
+        // See the solution:
+        //     tutorial/method_references/unbound_ex1_sltn.md
         return null;
     }
 
@@ -100,10 +104,14 @@ public class MethodReferences {
         // a constructor that creates an instance of a String from the bytes
         // representing its characters.
         //
-        // Your answer should be defined as a constructor method reference.
+        // It's safe to assume that the input is specified in your platform's
+        // default charset.
         //
-        // HINT: It's safe to assume that the input is specified in your
-        //       platform's default charset.
+        // Verify your solution:
+        //     mvn test -Dtest=MethodReferencesTest#testStringCreator
+        //
+        // See the solution:
+        //     tutorial/method_references/constructor_ex1_sltn.md
         return null;
     }
 }

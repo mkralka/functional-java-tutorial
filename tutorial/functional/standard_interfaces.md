@@ -1,103 +1,5 @@
 # Functional Interfaces
 
-Java 8 introduced the concept of a *functional interface*; a key feature for
-functional programming (as we shall see in this section).
-
-## What You Will Learn
-
-When you have completed this section of the tutorial, you should understand:
-
-1. what a functional interface is
-
-2. why functional interfaces are important
-
-3. the standard functional interfaces introduced in Java 8
-
-4. how to create custom functional interfaces to be used when the standard
-   interfaces are insufficient
-
-## What is a Functional Interface?
-
-Java 8 introduced the concept of a *functional interface* (which is defined as
-any
-[`interface`](https://docs.oracle.com/javase/tutorial/java/IandI/createinterface.html)
-that has exactly one unimplemented method) and is at the heart of
-functional programming in Java. This does not mean that an `interface` can have
-only one method to be considered *functional*; an `interface` can have multiple
-methods as long as all but one are
-[default methods](https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html)
-(that is, have a default implementation using the `default` keyword). Although
-default methods are an important part of functional programming in Java, they
-are not critical to understanding basic functional expressions.
-
-## Why are Functional Interfaces Important?
-
-[First-class functions](https://en.wikipedia.org/wiki/First-class_function) are
-a necessity for programming in the functional style, where the use of
-[higher-order functions](https://en.wikipedia.org/wiki/Higher-order_function)
-(a function taking one or more parameters that are themselves functions) is
-commonplace. Earlier versions of Java appeared to support higher-order
-functions, through the use of
-[anonymous classes](https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html).
-
-Consider a higher-order function, `map`, that takes a list and a transformation
-as parameters and produces another list containing the element of the supplied
-after having the transformation function applied. `map` might have an interface
-that is similar to the following:
-
-``` java
-class Lists {
-    interface Transformer<T, U> {
-        U transform(T x);
-    }
-
-    static <T, U> List<U> map(List<T> list, Transformer<T, U> transformer) {
-        // magic
-    }
-}
-```
-
-To convert a list of `Integer`s into a list of `String`s, one might use `map` in
-a way similar to the following:
-
-``` java
-List<String> stringizedList = Lists.map(inputList, new Lists.Transformer<>() {
-    String transform(Integer x) {
-        return x.toString();
-    }
-});
-```
-
-This was problematic for a number of reasons:
-
-1. The caller must define the body of the function in terms of a class. Although
-   anonymous classes improve clarity by allowing the class to defined inline,
-   the syntax is still verbose.
-2. `Lists` needs to define a special interface, `Transformer`, that describes
-   the operation (or function) that `map` will perform on each element. This can
-   result in many, effectively identical, interfaces being defined by each
-   package/library that needs a similar operation.
-3. Anonymous classes are processed by the compiler and result in `.class` files
-   being generated. These class files must be loaded by the JVM and instantiated
-   at runtime. Functional interfaces need not be, allowing side-effect-free
-   functions to be further optimized.
-
-To help address the awkwardness imposed on the caller, a more succinct syntax is
-needed. This is only possible if the majority of the interface to be implemented
-can be inferred from context (e.g., the return type along with the number and
-type of parameters). Functional interfaces fit this bill perfectly, having only
-a single unimplemented method. We'll explore this syntax later when we cover
-[lambda expressions](lambda_expressions.md) and [method references](method_references.md).
-
-To help avoid many similar interfaces being defined, Java 8 introduces several
-standard functional interfaces that can be used. We'll discuss these in greater
-detail below.
-
-To help raise functions to first-class citizen status, functional interfaces are
-treated differently by the compiler. The byte code generated for their use is
-much different than non-functional interfaces, since it is assumed there is no
-object backing the function.
-
 ## Standard Functional Interfaces
 
 Java 8 bundles wide range of functional interfaces in the
@@ -139,62 +41,51 @@ that don't quite fit into the table.
 | [`ObjLongConsumer<T>`](https://docs.oracle.com/javase/8/docs/api/java/util/function/ObjLongConsumer.html)        | [`BiConsumer<T, U>`](https://docs.oracle.com/javase/8/docs/api/java/util/function/BiConsumer.html) where `U` is a primitive `long`.                                |
 | [`ObjDoubleConsumer<T>`](https://docs.oracle.com/javase/8/docs/api/java/util/function/ObjDoubleConsumer.html)    | [`BiConsumer<T, U>`](https://docs.oracle.com/javase/8/docs/api/java/util/function/BiConsumer.html) where `U` is a primitive `double`.                              |
 
-## Defining Custom Functional Interfaces
+### Function Composition
 
-Whenever possible, the standard functional interfaces should be preferred.
-Occasionally, none of the standard functional interfaces are appropriate for
-your use case, necessitating a custom interface. This is just a matter of
-defining an interface with exactly one unimplemented method.
+One of the powerful features supported by the standard functional interfaces in
+Java 8 is the ability to easily compose new functions from existing ones.
 
-Consider the need for a `IntBiPredicate`: a predicate that behaves exactly like
-`IntPredicate` except that it takes two primitive
-`int`s as parameters instead of one. One might expect the following definition:
+Consider we have a function that extracts the `EmergencyContact` from an
+`Employee` and another function that extracts the `Name` from an
+`EmergencyContact`:
 
 ``` java
-@FunctionalInterface
-interface IntBiPredicate {
-    boolean test(int left, int right);
-
-    default IntBiPredicate and(IntBiPredicate other) {
-        Objects.requireNonNull(other);
-        return (left, right) -> test(left, right) && other.test(left, right);
-    }
-
-    default IntBiPredicate negate() {
-        return (left, right) -> !test(left, right);
-    }
-
-    default IntBiPredicate or(IntBiPredicate other) {
-        Objects.requireNonNull(other);
-        return (left, right) -> test(left, right) || other.test(left, right);
-    }
-}
+Function<Employee, EmergencyContact> employeeToEmergencyContact = Employee::getEmergencyContact;
+Fuction<EmergencyContact, Name> emergencyContactToName = EmergencyContact::getName;
 ```
 
-In addition to the `test` method that must be implemented, `InBiPredicate` also
-defines methods with default implementations for chaining predicates together
-with boolean operations. Don't worry about the syntax of these methods, the key
-takeaway is the fact they have default implementations, leaving only a single
-unimplemented method.
+> Don't worry too much about the syntax used to assign values to
+> `employeeToEmergencyContact` and `emergencyContactToName`; this is covered
+> [later](../method_references/start.md).
 
-Also note the
-[`@FunctionalInterface`](https://docs.oracle.com/javase/8/docs/api/java/lang/FunctionalInterface.html)
-annotation. This is a notice to the compiler that this interface is intended to
-be used a functional interface. This is **not** a requirement; it instructs the
-compiler to generate an error if the definition violates any restriction of a
-functional interface.
+Without support for composing functions, creating a function to extract the name
+of an emergency contact from an employee might be written as follows:
 
-## Abstract Classes as Functional Interfaces
+``` java
+Function<Employee, Name> employeeToEmergencyContactName =
+        employee -> emergencyContactToName(employeeToEmergencyContact(employee));
+```
 
-The astute reader may have noticed that an abstract class with a single
-unimplemented method seems to satisfy all of the criteria of a *functional
-interface*. *Can an abstract class be used this way?* Sadly, things are not
-quite that simple. In short, functional interfaces are intended to be supplied
-by [lambda expressions](lambda_expressions.md), which should be seen as a *function* rather
-than an object; an instance of an abstract class is an object. Brian Goetz, the
-chief Java Language architect, explains it in greater detail on Java's
-[java mailing list](http://mail.openjdk.java.net/pipermail/lambda-dev/2013-March/008441.html).
+> Again, don't worry too much about the syntax used to assign a value to
+> `employeeToEmergencyContactName`; this is covered
+> [later](../lambda_expressions/start.md).
+
+Using methods like
+[`Function.andThen`](https://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html#andThen-java.util.function.Function-),
+`employeeToEmergencyContact` and `emergencyContactToName` can, instead, be
+composed as follows:
+
+``` java
+Function<Employee, Name> employeeToEmergencyContactName =
+        employeeToEmergencyContact.andThen(emergencyContactToName);
+```
+
+This may seem more natural because the specified in the order they are applied
+rather than the reverse order.
 
 ---
 
-[Previous](start.md) | [Up](start.md) | [Next](lambda_expressions.md)
+[Continue](custom.md)
+
+Skip Back | [Up](../start.md) | [Skip Forward](../lambda_expressions/start.md)

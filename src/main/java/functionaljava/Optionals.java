@@ -30,17 +30,21 @@ public final class Optionals {
      * available.
      */
     public Optional<Name> getEmergencyContactName(Employee employee) {
-        // Replace the body of this method with one that returns the name of the
-        // employee's emergency contact, if one is specified. If the employee
-        // doesn't have an emergency contact, an empty Optional should be
-        // returned.
+        // Replace the body of this method with one that returns the name of an
+        // employee's emergency contact. If the employee doesn't have an
+        // emergency contact, an empty Optional should be returned.
         //
-        // Your solution should use the functional API of Optional, without
-        // any branches or if statements.
+        // Verify your solution:
+        //     mvn test -Dtest=OptionalsTest#testGetEmergencyContactName
         //
-        // HINT: The employee's emergency contact can be accessed by calling
-        //       employee.getEmergencyContact(). Unfortunately, this is an
-        //       Optional<EmergencyContact> and not the needed Optional<Name>.
+        // See the solution:
+        //     tutorial/optional/transforming_ex1_sltn.md
+        //
+        // Hints:
+        // * An employee's emergency contact can be retrieved using
+        //   Employee.getEmergencyContact.
+        // * An emergency contact's name can be retrieved using
+        //   EmergencyContact.getName.
         return null;
     }
 
@@ -52,12 +56,22 @@ public final class Optionals {
      * otherwise.
      */
     public Optional<PhoneNumber> getHomePhoneNumber(Employee employee) {
-        // Replace the body of this method with one that returns the employee's
-        // home phone number, if available. If the employee doesn't have a home
-        // phone number, an empty Optional should be returned.
+        // Replace the body of this method with one that returns an employee's
+        // home phone number, if available. If the employee doesn't have any
+        // contact information or the contact information doesn't include a
+        // home phone number, an empty `Optional` should be returned.
         //
-        // Your solution should use the functional API of Optional, without
-        // any branches or if statements.
+        // Verify your solution:
+        //     mvn test -Dtest=OptionalsTest#testGetHomePhoneNumber
+        //
+        // See the solution:
+        //     tutorial/optional/transforming_ex2_sltn.md
+        //
+        // Hints:
+        // * An employee's contact information can be retrieved using
+        //   Employee.getContactInformation.
+        // * A home phone number can be retrieved from contact information using
+        //   ContactInformation.getHomePhone.
         return null;
     }
 
@@ -69,16 +83,20 @@ public final class Optionals {
      * {@link Optional#empty()} otherwise.
      */
     public Optional<EmergencyContact> getContactableEmergencyContact(Employee employee) {
-        // Replace the body of this method with one that returns employee's
-        // emergency contact if said contact is contactable. Otherwise, return
-        // an empty optional. An emergency contact is contactable if it has
-        // non-empty contact information.
+        // Replace the body of this method with one that returns an employee's
+        // emergency contact, if said contact is contactable. If the employee
+        // has no emergency contact or that contact as no contact information,
+        // an empty Optional should be returned.
         //
-        // Your solution should use the functional API of Optional, without
-        // any branches or if statements.
+        // CONTACT_INFO_IS_EMPTY, a Predicate<ContactInformation>, can be used
+        // to determine if a ContactInformation is absent of all contact
+        // details.
         //
-        // HINT: CONTACT_INFO_IS_EMPTY is a predicate that evaluates to true
-        //       if and only if the supplied ContactInformation is empty.
+        // Verify your solution:
+        //     mvn test -Dtest=OptionalsTest#testGetContactableEmergencyContact
+        //
+        // See the solution:
+        //     tutorial/optional/emptying_ex1_sltn.md
         return null;
     }
 
@@ -93,11 +111,15 @@ public final class Optionals {
     public void collectEmployeesWithoutEmergencyContacts(
             Employee employee,
             Collection<EmergencyContact> allEmergencyContacts) {
-        // Replace the body of this method with one that adds employee's
-        // emergency contact if one is present.
+        // Replace the body of this method with one that adds the employee's
+        // emergency contact to allEmergencyContacts if the emergency contact
+        // is present.
         //
-        // Your solution should use the functional API of Optional, without
-        // branches or if statements.
+        // Verify your solution:
+        //     mvn test -Dtest=OptionalsTest#testCollectEmployeesWithoutEmergencyContacts
+        //
+        // See the solution:
+        //     tutorial/optional/conditional_ex1_sltn.md
     }
 
     /**
@@ -110,13 +132,15 @@ public final class Optionals {
      * @return The preferred name of {@code name}.
      */
     public String preferredName(Name name) {
-        // Replace the body of this method with one that returns the preferred
-        // name of an individual. An individual's preferred name is their given
-        // name unless they have a nickname (in which case their nickname is
-        // preferred).
+        // Replace the body of this method with one that returns the
+        // individual's first name unless they have a nickname, which should be
+        // returned in its place.
         //
-        // Your solution should use the functional API of Optional, without
-        // branches or if statements.
+        // Verify your solution:
+        //     mvn test -Dtest=OptionalsTest#testPreferredName
+        //
+        // See the solution:
+        //     tutorial/optional/unwrapping_ex1_sltn.md
         return null;
     }
 
@@ -131,14 +155,17 @@ public final class Optionals {
     public ContactInformation getEmployeeContactInformation(
             Employee employee,
             Function<Name, ContactInformation> contactInformationFetcher) {
-        // Replace the body of this method with one that returns the contact
-        // information of an employee. If an employee doesn't have any
-        // associated contact information, it can be retrieved from the
-        // contactInformationFetcher. However, since this is an expensive
-        // operation, it should only be invoked if needed.
+        // Replace the body of this method with one that returns the employee's
+        // contact information. If the employee doesn't have any contact
+        // information, use contactInformationFetcher to retrieve it. Since
+        // fetching contact information is an expensive operation, only do so
+        // if needed.
         //
-        // Your solution should use the functional API of Optional, without
-        // branches or if statements.
+        // Verify your solution:
+        //     mvn test -Dtest=OptionalsTest#testGetEmployeeContactInformation
+        //
+        // See the solution:
+        //     tutorial/optional/unwrapping_ex2_sltn.md
         return null;
     }
 }

@@ -1,10 +1,12 @@
 package functionaljava;
 
 import functionaljava.types.Employee;
+import functionaljava.types.Name;
 import functionaljava.types.Office;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -30,21 +32,17 @@ public final class Streaming {
      * @return A list consisting of the squares of the integers found in {@code integers}.
      */
     public List<Integer> squareIntegerList(List<Integer> integers) {
-        // Replace the body of this method with one that creates copy of the
-        // input list but with each value squared (multiplied by itself). The
-        // output list should be the same length as the input list, duplicates
-        // and all.
+        // Replace the body of this method with one that returns a new List
+        // created by squaring each element (multiplying by itself). Your
+        // solution should create a Stream from the list using stream(),
+        // transform each element of the stream using map(), and collect the
+        // results into a List using collect() and Collectors.toList().
         //
-        // Your solution should use the functional Streams API rather than
-        // directly iterating though the input and manually accumulating the
-        // results in a mutable collection.
+        // Verify your solution:
+        //     mvn test -Dtest=StreamingTest#testSquareIntegerList
         //
-        // HINT: Stream.collect is used to terminate a stream and collect (and
-        //       return) the results.
-        // HINT: The Collectors class contains many Collector implementations
-        //       that accumulate entries of a stream into various Collection
-        //       types.
-        //       See https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html
+        // See the solution:
+        //     tutorial/streams/transforming_ex1_sltn.md
         return null;
     }
 
@@ -58,16 +56,19 @@ public final class Streaming {
      * office {@code office}.
      */
     public Set<String> employeeFamilyNamesAtOffice(Collection<Employee> employees, Office office) {
-        // Replace the body of this method with one that creates a Set
-        // containing the family names of all employees working out of
-        // office.
+        // Replace the body of this method with one that returns the (unique)
+        // family names of the employees that work out of a given office. Your
+        // solution should should create a Stream from the Collection using
+        // stream(), filtering out employees not from the provided office using
+        // filter(), transforming the remaining element using map(), and
+        // collecting (and de-duplicating) the results into a Set using
+        // collect() and Collectors.toSet().
         //
-        // Your solution should use the functional Streams API rather than
-        // directly iterating though the input and manually accumulating the
-        // results in a mutable collection.
+        // Verify your solution:
+        //     mvn test -Dtest=StreamingTest#testEmployeeFamilyNamesAtOffice
         //
-        // HINT: A stream can be filtered by supplying a predicate
-        //       See https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html
+        // See the solution:
+        //     tutorial/streams/filtering_ex1_sltn.md
         return null;
     }
 
@@ -83,24 +84,27 @@ public final class Streaming {
      * @return A version of {@code employees} sorted by employee name.
      */
     public Collection<Employee> sortEmployeesByName(Collection<Employee> employees) {
-        // Replace the body of this method with one that sorts the input
-        // employee list by name, breaking ties using the employee's start date.
-        // When sorting by name, employees are first ordered by family name
-        // then by given name; nicknames is not considered.
+        // Replace the body of this method with one that returns a List
+        // containing the supplied employees, but that is sorted by family
+        // name (earlier names appearing first). If two employees share the
+        // same family name, the one with the earlier given name should appear
+        // first. If two or more employees share the same given and family
+        // names, the one with the earlier start date should appear first. If
+        // two or more employees share the same given and family names and
+        // start date, they may appear in the output in any order. All name
+        // sorting is case insensitive.
         //
-        // Your solution should use the functional Streams API rather than
-        // directly iterating though the input and manually accumulating the
-        // results in a mutable collection.
+        // The provided Comparator<Name> can be used to compare names and as a
+        // guide for creating a Comparator<Employee>.
         //
-        // HINT: It's safe to assume String.compareIgnoreCase will correctly
-        //       order family and given names.
-        // HINT: A stream can easily be sorted by supplying an appropriate
-        //       comparator.
-        //       See https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html
-        // HINT: Comparator has a functional-friendly API for stitching together
-        //       sort-key extraction and comparators. E.g., Comparator.comparing
-        //       and Comparator.thenComparing.
-        //       See https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html
+        // Verify your solution:
+        //     mvn test -Dtest=StreamingTest#testSortEmployeesByName
+        //
+        // See the solution:
+        //     tutorial/streams/sorting_ex1_sltn.md
+        Comparator<Name> nameComparator =
+                Comparator.comparing(Name::getFamilyName, String::compareToIgnoreCase)
+                        .thenComparing(Name::getGivenName, String::compareToIgnoreCase);
         return null;
     }
 
@@ -112,21 +116,19 @@ public final class Streaming {
      * @return The number of employees working out of each office.
      */
     public Map<Office, Long> employeeCountByOffice(Collection<Employee> employees) {
-        // Replace the body of this method with one that counts the number of
-        // employees in each office.
+        // Replace the body of this method with one that returns the number of
+        // employees who work out of each office. All entries in the result
+        // should contain non-zero values (i.e., only offices found in the
+        // employee records need to be considered).
         //
-        // Your solution should use the functional Streams API rather than
-        // directly iterating though the input and manually accumulating the
-        // results in a mutable collection.
+        // Collectors.groupingBy() can be used along with Collectors.counting()
+        // to create a Collector to reduce the stream using Stream.collect().
         //
-        // HINT: The Collectors class can create a collector that first groups
-        //       elements by an arbitrary attribute (e.g., office location)
-        //       before applying a collector to each group.
-        //       See https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html
-        // HINT: The Collectors class contains Collector implementations for
-        //       calculating various arithmetic operations on the elements
-        //       of a stream (such as sum, average, and count).
-        //       See https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html
+        // Verify your solution:
+        //     mvn test -Dtest=StreamingTest#testEmployeeCountByOffice
+        //
+        // See the solution:
+        //     tutorial/streams/grouping_ex1_sltn.md
         return null;
     }
 
@@ -138,23 +140,32 @@ public final class Streaming {
      */
     public Map<Office, Employee> newestEmployeeByOffice(Collection<Employee> employees) {
         // Replace the body of this method with one that finds the newest
-        // employee (the one with the most recent start date) in each office.
-        // If two or more employees have the same start date, any of these
-        // employees may be represent the office.
+        // employee (has the most recent start date) in each office. If two or
+        // more employees share the earliest start date, any of these employees
+        // may represent the office. All offices in the result must have a
+        // "newest" employee (i.e., only offices found in the employee records
+        // need to be considered).
         //
-        // Your solution should use the functional Streams API rather than
-        // directly iterating though the input and manually accumulating the
-        // results in a mutable collection.
+        // The solution to the employeeCountByOffice will come in handy; we
+        // will just need to replace the Collector with one that finds the
+        // newest employee.
         //
-        // HINT: Your solution to employeeCountByOffice will likely come in
-        //       handy to group employees by location.
-        // HINT: The Collectors class can create a Collector that finds the
-        //       min or max element in a stream, given the right comparator.
-        // HINT: Collectors.collectingAndThen can be used to apply a
-        //       transformation to the result of collector.
-        // HINT: Try to find a way to create a Map<Office, Optional<Employee>>
-        //       first, then augment the collector to unwrap the Optional.
-        //       This can be done without streaming twice.
+        // To create this Collector we can use Collectors.maxBy(), which almost
+        // does what we need. Since a stream can be empty, a Collector that
+        // reduces a stream to a single element will evaluates to an Optional
+        // instead of an element from the stream. However, since a group never
+        // collects zero elements, the Optional can be safely unwrapped in our
+        // case.
+        //
+        // Collectors.collectingAndThen() can be used to attach a finishing
+        // function to the Collector created by Collectors.maxBy() that will
+        // unwrap the Optional it generates.
+        //
+        // Verify your solution:
+        //     mvn test -Dtest=StreamingTest#testNewestEmployeeByOffice
+        //
+        // See the solution:
+        //     tutorial/streams/grouping_ex2_sltn.md
         return null;
     }
 
@@ -169,19 +180,21 @@ public final class Streaming {
      * started strictly before {@code date}.
      */
     public double percentageStartedBefore(Collection<Employee> employees, LocalDate date) {
-        // Replace the body of this method with one that calculates the
-        // percentage (from 0.0 to 1.0) of employees that started strictly
-        // before the provided date. If all employees started before the
-        // provided date, 1.0 should be returned. If no employees started
-        // before the provided date, 0.0 should be returned.
+        // Replace the body of this method with one that returns the percentage
+        // (from 0.0 to 1.0) of employees that started before (but not on) the
+        // provided date. If all employees started before the provided date,
+        // 1.0 should be returned. If all employees started on or after the
+        // provided date, 0.0 should be returned.
         //
-        // Your solution should use the functional Streams API rather than
-        // directly iterating though the input and manually accumulating the
-        // results in a mutable object.
+        // Collectors.partitioningBy() can be used along with
+        // Collectors.counting() to create a Collector to reduce the stream
+        // using Stream.collect().
         //
-        // HINT: Partition the stream into those employees that started before
-        //       date and those that started on or after and count the size of
-        //       each partition.
+        // Verify your solution:
+        //     mvn test -Dtest=StreamingTest#testPercentageStartedBefore
+        //
+        // See the solution:
+        //     tutorial/streams/partitioning_ex1_sltn.md
         return -1.0d;
     }
 
@@ -193,18 +206,21 @@ public final class Streaming {
      * @return The most senior employee, if any, found in {@code employees}
      */
     public Optional<Employee> mostSeniorEmployee(Collection<Employee> employees) {
-        // Replace the body of this method with one that finds and returns the
-        // most senior employee (the employee with the earliest start data).
-        // If two or more employees have the same start date, any one of these
-        // employees may be returned. If no employees are provided, an empty
-        // Optional is returned.
+        // Replace the body of this method with one that returns the employee
+        // with the earliest start date. If there are no employee records, an
+        // empty Optional should be returned. If multiple employees have the
+        // same start date, the one that appears first in the input should be
+        // returned.
         //
-        // Your solution should use the functional Streams API rather than
-        // directly iterating though the input and manually accumulating the
-        // results in a mutable collection.
+        // Comparator.comparing() can be used to create a suitable
+        // Comparator<Employee> that compares employees by start date. This can
+        // be used with Stream.min() to find the minimum element of a stream.
         //
-        // HINT: Given an appropriate comparator, a stream has an operation to
-        //       find its minimum or maximum element.
+        // Verify your solution:
+        //     mvn test -Dtest=StreamingTest#testMostSeniorEmployee
+        //
+        // See the solution:
+        //     tutorial/streams/partitioning_ex1_sltn.md
         return null;
     }
 
@@ -218,17 +234,23 @@ public final class Streaming {
      * @return The most senior employees found in {@code employees}.
      */
     public Set<Employee> mostSeniorEmployees(Collection<Employee> employees) {
-        // Replace the body of this method with one that finds all of the most
-        // senior employees and returns the. If multiple employees share the
-        // earliest start date, they should all be returned.
+        // Replace the body of this method with one that returns all of the
+        // employees that share the earliest start date. If there are no
+        // employee records, an empty Set should be returned.
         //
-        // Your solution should use the functional Streams API rather than
-        // directly iterating though the input and manually accumulating the
-        // results in a mutable collection.
+        // Don't be fooled by the similarities with mostSeniorEmployee() that
+        // required finding a single element of the stream. This calls for a
+        // much different solution.
         //
-        // HINT: This can be achieved without sorting the stream by first
-        //       determining the earliest start date then finding the
-        //       employees that started on that date.
+        // A simple way to find all minimal elements without sorting is to make
+        // a pass through the stream to find the minimal element then making a
+        // second pass through the list to remove all but the minimal elements.
+        //
+        // Verify your solution:
+        //     mvn test -Dtest=StreamingTest#testMostSeniorEmployees
+        //
+        // See the solution:
+        //     tutorial/streams/partitioning_ex1_sltn.md
         return null;
     }
 
@@ -242,21 +264,22 @@ public final class Streaming {
      * @return The most senior employees found in {@code employees}.
      */
     public Set<Employee> mostSeniorEmployees(Stream<Employee> employeeStream) {
-        // This BONUS question is a variation of mostSeniorEmployees, except
-        // that it requires a single pass through the stream.
+        // This BONUS question is a variation of
+        // mostSeniorEmployees(Collection<Employee>).
         //
-        // Replace the body of this method with one that finds all of the most
-        // senior employees and returns the. If multiple employees share the
-        // earliest start date, they should all be returned.
+        // Replace the body of this method with one that returns the employees
+        // with the earliest start date in a single pass through the elements
+        // of the stream. If there are no employee records, an empty Set
+        // should be returned.
         //
-        // Your solution should use the functional Streams API in a single pass,
-        // without first collecting the input into a collection (e.g., List or
-        // Set).
+        //  Consider implementing a custom `Collector` that stores all the
+        // employees that are the most senior that have been seen so far.
         //
-        // HINT: Define a custom Collector (or supplier, accumulator, and
-        //       combiner) and use it with Stream.collect.
-        // HINT: Consider storing the most senior employees found so far in
-        //       the accumulator.
+        // Verify your solution:
+        //     mvn test -Dtest=StreamingTest#testMostSeniorEmployeesStream
+        //
+        // See the solution:
+        //     tutorial/streams/partitioning_ex1_sltn.md
         return mostSeniorEmployees(employeeStream.collect(toList()));
     }
 }

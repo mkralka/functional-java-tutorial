@@ -98,12 +98,12 @@ and
 
 ## Sections
 
-1. [Functional References](functional.md)
-   * [Lambda Expressions](lambda_expressions.md)
-   * [Method References](method_references.md)
-2. [Optional](optional.md)
-3. [Streams](streams.md)
+1. [Functional Interfaces](functional/start.md)
+2. [Lambda Expressions](lambda_expressions/start.md)
+3. [Method References](method_references/start.md)
+4. [Optional](optional/start.md)
+5. [Streams](streams/start.md)
 
 ---
 
-Previous | Up | [Next](functional.md)
+[Continue](functional/start.md)
