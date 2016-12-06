@@ -62,31 +62,60 @@ To clone the repo, open up a terminal and navigate to the directory under which
 you would like to store the tutorial:
 
 ``` bash
-cd ~/dev
+cd ~/tutorials
 ```
 
-then clone the repo using `git` command.
+then clone the repo using `git` command:
+
 ``` bash
 git clone https://github.com/mkralka/functional-java-tutorial
 ```
 
-### Step 2: Pre-Download tutorial Dependencies (Optional)
-
-In order to speed up the first compilation, you may optionally download and
-cache the tutorial's dependencies. This will allow you to work offline, with no
-Internet connection.
-
-From the command line, run the following command:
+then navigate to the root of repo:
 
 ``` bash
-mvn dependency:resolve
+cd functional-java-tutorial
+```
+
+### Step 2: Verify your Environment
+
+It's a good idea to verify your environment is set up for the exercises before
+getting started on the tutorial. This can be done by running the following
+command from the root of the repo:
+
+``` bash
+mvn test -Dtest=SetupTest
+```
+
+If all goes well, the output from the above command will end with a tests
+section that will look similar to the following:
+
+```
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running functionaljava.SetupTest
+Configuring TestNG with: org.apache.maven.surefire.testng.conf.TestNG652Configurator@759ebb3d
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.402 sec
+
+Results :
+
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2.968 s
+[INFO] Finished at: 2016-12-05T19:43:52-08:00
+[INFO] Final Memory: 16M/259M
+[INFO] ------------------------------------------------------------------------
 ```
 
 ### Step 3: Jump in, feet first!
 
 The tutorial begins [here](tutorial/start.md).
 
-#### A note on reading the tutorial offline.
+## A Note on Reading the Tutorial Offline
 
 If you would prefer reading the tutorial offline, you have several options:
 
