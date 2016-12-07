@@ -32,6 +32,9 @@ public final class Streaming {
      * @return A list consisting of the squares of the integers found in {@code integers}.
      */
     public List<Integer> squareIntegerList(List<Integer> integers) {
+        // Practice transforming the elements of a stream and collecting the
+        // transformed elements into a List.
+        //
         // Replace the body of this method with one that returns a new List
         // created by squaring each element (multiplying by itself). Your
         // solution should create a Stream from the list using stream(),
@@ -56,6 +59,9 @@ public final class Streaming {
      * office {@code office}.
      */
     public Set<String> employeeFamilyNamesAtOffice(Collection<Employee> employees, Office office) {
+        // Practice filtering the elements of a stream before being transformed
+        // and collected into a Set.
+        //
         // Replace the body of this method with one that returns the (unique)
         // family names of the employees that work out of a given office. Your
         // solution should should create a Stream from the Collection using
@@ -84,6 +90,9 @@ public final class Streaming {
      * @return A version of {@code employees} sorted by employee name.
      */
     public Collection<Employee> sortEmployeesByName(Collection<Employee> employees) {
+        // Practice defining a Comparator and using it to sort the elements of
+        // a stream before collecting them into a List.
+        //
         // Replace the body of this method with one that returns a List
         // containing the supplied employees, but that is sorted by family
         // name (earlier names appearing first). If two employees share the
@@ -116,6 +125,9 @@ public final class Streaming {
      * @return The number of employees working out of each office.
      */
     public Map<Office, Long> employeeCountByOffice(Collection<Employee> employees) {
+        // Practice grouping elements by a specific property and aggregating
+        // the elements that belong to each group using predefined Collectors.
+        //
         // Replace the body of this method with one that returns the number of
         // employees who work out of each office. All entries in the result
         // should contain non-zero values (i.e., only offices found in the
@@ -139,6 +151,10 @@ public final class Streaming {
      * @return The newest employee from {@code employees} in each office.
      */
     public Map<Office, Employee> newestEmployeeByOffice(Collection<Employee> employees) {
+        // Practice grouping elements by a specific property and aggregating
+        // the elements that belong to each group, using a complex Collector
+        // created by chaining a Collector with a finishing function.
+        //
         // Replace the body of this method with one that finds the newest
         // employee (has the most recent start date) in each office. If two or
         // more employees share the earliest start date, any of these employees
@@ -180,6 +196,9 @@ public final class Streaming {
      * started strictly before {@code date}.
      */
     public double percentageStartedBefore(Collection<Employee> employees, LocalDate date) {
+        // Practice partitioning a stream in two and aggregating the elements
+        // of each partition.
+        //
         // Replace the body of this method with one that returns the percentage
         // (from 0.0 to 1.0) of employees that started before (but not on) the
         // provided date. If all employees started before the provided date,
@@ -206,6 +225,9 @@ public final class Streaming {
      * @return The most senior employee, if any, found in {@code employees}
      */
     public Optional<Employee> mostSeniorEmployee(Collection<Employee> employees) {
+        // Practice creating a simple Comparator and using it to find the
+        // minimum element of a stream.
+        //
         // Replace the body of this method with one that returns the employee
         // with the earliest start date. If there are no employee records, an
         // empty Optional should be returned. If multiple employees have the
@@ -234,6 +256,10 @@ public final class Streaming {
      * @return The most senior employees found in {@code employees}.
      */
     public Set<Employee> mostSeniorEmployees(Collection<Employee> employees) {
+        // Learn how to work around the limitations of the built in Collectors
+        // to solve a problem that seems similar to problems easily solved
+        // with built-in collections.
+        //
         // Replace the body of this method with one that returns all of the
         // employees that share the earliest start date. If there are no
         // employee records, an empty Set should be returned.
@@ -266,6 +292,9 @@ public final class Streaming {
     public Set<Employee> mostSeniorEmployees(Stream<Employee> employeeStream) {
         // This BONUS question is a variation of
         // mostSeniorEmployees(Collection<Employee>).
+        //
+        // Practice creating a custom Collector for performing complex
+        // reductions.
         //
         // Replace the body of this method with one that returns the employees
         // with the earliest start date in a single pass through the elements

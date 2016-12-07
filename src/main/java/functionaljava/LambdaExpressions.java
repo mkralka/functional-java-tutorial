@@ -2,6 +2,8 @@ package functionaljava;
 
 import java.util.function.BiFunction;
 import java.util.function.DoubleBinaryOperator;
+import java.util.function.DoubleUnaryOperator;
+import java.util.function.Function;
 import java.util.function.LongUnaryOperator;
 
 public final class LambdaExpressions {
@@ -16,6 +18,9 @@ public final class LambdaExpressions {
      * @return A unary operator that squares its input.
      */
     public LongUnaryOperator squarer() {
+        // Practice writing a single-statement lambda expression with a single,
+        // untyped parameter.
+        //
         // Replace the body of this method with one that returns a lambda
         // expression that accepts a single parameter, x, and returns the square
         // of x (i.e., x * x).
@@ -36,6 +41,9 @@ public final class LambdaExpressions {
      * base and height.
      */
     public DoubleBinaryOperator triangleArea() {
+        // Practice writing a single-statement lambda expression with multiple
+        // untyped parameters.
+        //
         // Replace the body of this method with one that returns a lambda
         // expression taking two parameters that describe the dimensions of
         // a triangle, base and height, and returns the area of said triangle.
@@ -62,6 +70,9 @@ public final class LambdaExpressions {
      * @return A unary operator that calculates the nth Fibonacci number given input n.
      */
     public LongUnaryOperator fibonacci() {
+        // Practice writing a block-statement lambda expression with a single,
+        // untyped parameter.
+        //
         // Replace the body of this method with one that returns a lambda
         // expression taking a single parameter, n, and calculates the fib(n)
         // (the nth number in the Fibonacci sequence).
@@ -95,6 +106,9 @@ public final class LambdaExpressions {
      * parameter.
      */
     public BiFunction<String, Integer, String> stringMultiplier() {
+        // Practice writing a block-statement lambda expression with multiple
+        // untyped parameters.
+        //
         // Replace the body of this method with one that returns a lambda
         // expression taking two parameters, str and count, and calculates a
         // string that consists of str repeated count times.

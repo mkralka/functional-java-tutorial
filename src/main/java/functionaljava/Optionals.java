@@ -30,6 +30,9 @@ public final class Optionals {
      * available.
      */
     public Optional<Name> getEmergencyContactName(Employee employee) {
+        // Practice transforming one Optional into another, preserving
+        // emptiness.
+        //
         // Replace the body of this method with one that returns the name of an
         // employee's emergency contact. If the employee doesn't have an
         // emergency contact, an empty Optional should be returned.
@@ -56,6 +59,9 @@ public final class Optionals {
      * otherwise.
      */
     public Optional<PhoneNumber> getHomePhoneNumber(Employee employee) {
+        // Practice transforming one Optional into another, preserving
+        // emptiness, when the transformation function returns an Optional.
+        //
         // Replace the body of this method with one that returns an employee's
         // home phone number, if available. If the employee doesn't have any
         // contact information or the contact information doesn't include a
@@ -83,6 +89,9 @@ public final class Optionals {
      * {@link Optional#empty()} otherwise.
      */
     public Optional<EmergencyContact> getContactableEmergencyContact(Employee employee) {
+        // Practice filtering Options, creating empty Optionals from non-empty
+        // ones if they don't match a particular predicate.
+        //
         // Replace the body of this method with one that returns an employee's
         // emergency contact, if said contact is contactable. If the employee
         // has no emergency contact or that contact as no contact information,
@@ -111,6 +120,10 @@ public final class Optionals {
     public void collectEmployeesWithoutEmergencyContacts(
             Employee employee,
             Collection<EmergencyContact> allEmergencyContacts) {
+        // Practice conditionally executing code based on the emptiness of an
+        // Optional; code is only executed if and only if the Optional is non-
+        // empty.
+        //
         // Replace the body of this method with one that adds the employee's
         // emergency contact to allEmergencyContacts if the emergency contact
         // is present.
@@ -132,6 +145,9 @@ public final class Optionals {
      * @return The preferred name of {@code name}.
      */
     public String preferredName(Name name) {
+        // Practice unwrapping the value from an Optional, specifying a default
+        // value to use if the Optional is empty.
+        //
         // Replace the body of this method with one that returns the
         // individual's first name unless they have a nickname, which should be
         // returned in its place.
@@ -155,6 +171,10 @@ public final class Optionals {
     public ContactInformation getEmployeeContactInformation(
             Employee employee,
             Function<Name, ContactInformation> contactInformationFetcher) {
+        // Practice unwrapping the value from an Optional, specifying a
+        // supplier for creating the default value touse if the Optional is
+        // empty.
+        //
         // Replace the body of this method with one that returns the employee's
         // contact information. If the employee doesn't have any contact
         // information, use contactInformationFetcher to retrieve it. Since
