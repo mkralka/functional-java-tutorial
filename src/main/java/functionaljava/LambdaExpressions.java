@@ -51,7 +51,7 @@ public final class LambdaExpressions {
         //     area = 1/2 * base * height.
         //
         // Verify your solution:
-        //     mvn test -Dtest=LambdaExpressionsTest#testSquarer
+        //     mvn test -Dtest=LambdaExpressionsTest#testTriangleArea
         //
         // See the solution:
         //     tutorial/lambda_expressions/ex002_sol.md

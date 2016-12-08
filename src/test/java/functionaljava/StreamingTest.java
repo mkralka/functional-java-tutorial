@@ -296,7 +296,7 @@ public final class StreamingTest {
     }
 
     @Test(dataProvider = "newestEmployeeByOffice")
-    public void testnewestEmployeeByOffice(
+    public void testNewestEmployeeByOffice(
             Collection<Employee> employees,
             Map<Office, Employee> expected) {
         Map<Office, Employee> actual = streaming.newestEmployeeByOffice(employees);
