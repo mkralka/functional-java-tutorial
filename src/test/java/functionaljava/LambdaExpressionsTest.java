@@ -93,9 +93,9 @@ public final class LambdaExpressionsTest {
 
     @Test(dataProvider= "stringMultiplier")
     public void testStringMultiplier(String x, int y, String expected) {
-        BiFunction<String, Integer, String> stringMultilier = lambdaExpressions.stringMultiplier();
+        BiFunction<String, Integer, String> stringMultiplier = lambdaExpressions.stringMultiplier();
 
-        String actual = stringMultilier.apply(x, y);
+        String actual = stringMultiplier.apply(x, y);
         assertEquals(actual, expected);
     }
 

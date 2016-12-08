@@ -12,7 +12,7 @@ supported filter-type operations:
 | Operation                                                                                                               | Description                                                                              |
 |:------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------|
 | [`filter`](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#filter-java.util.function.Predicate-) | Remove all elements from the stream except those that match the supplied predicate.      |
-| [`distict`](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#distinct--)                          | Remove all duplicate elements from the list, ensuring each element appears exactly once. |
+| [`distinct`](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#distinct--)                         | Remove all duplicate elements from the list, ensuring each element appears exactly once. |
 | [`limit`](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#limit-long-)                           | Truncate the stream to contain no more than the specified number of elements.            |
 | [`skip`](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#skip-long-)                             | Discard the specified number of elements at the beginning of the list.                   |
 

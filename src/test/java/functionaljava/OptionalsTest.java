@@ -24,7 +24,7 @@ public final class OptionalsTest {
     private static final Optionals optionals = Optionals.INSTANCE;
 
     private static final Name MARTY_MCFLY = Name.of("McFly", "Martin", "Calvin");
-    private static final Name EMMETT_BROWN = Name.of("Brown", "Emmitt", "Doc");
+    private static final Name EMMETT_BROWN = Name.of("Brown", "Emmett", "Doc");
     private static final Name SAM_BECKETT = Name.of("Beckett", "Samuel");
     private static final Name AL_CALAVICCI = Name.of("Calavicci", "Al");
     private static final Name AXEL_FOLEY = Name.of("Foley", "Axel");

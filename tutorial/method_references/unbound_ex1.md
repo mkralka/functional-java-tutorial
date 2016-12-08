@@ -10,7 +10,7 @@ Open
 and replace the body of the `collectionSizer` method with one that returns a
 reference to an unbound method that calculates the size of (number of elements
 in) a
-[`Ccollection`](https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html).
+[`Collection`](https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html).
 
 Since the method reference should be unbound, it must be an instance method of
 the `Collection` class.
