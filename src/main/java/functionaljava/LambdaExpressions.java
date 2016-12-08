@@ -2,8 +2,6 @@ package functionaljava;
 
 import java.util.function.BiFunction;
 import java.util.function.DoubleBinaryOperator;
-import java.util.function.DoubleUnaryOperator;
-import java.util.function.Function;
 import java.util.function.LongUnaryOperator;
 
 public final class LambdaExpressions {
