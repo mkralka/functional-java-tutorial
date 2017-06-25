@@ -8,7 +8,7 @@ operation. Elements that implement
 [`Comparable`](https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html)
 are sorted by their natural order by default. However, a
 [`Comparator`](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html)
-can be supplied to provide a alternate ordering.
+can be supplied to provide an alternate ordering.
 
 `Comparator` is a powerful interface, making it trivial to chain together
 `Comparator` and transformations. This is incredibly useful when trying to
@@ -19,7 +19,7 @@ create a `Comparator` to handles both. For example:
 
 ``` java
 input.stream()
-    .sorted(Comparator.comparing(File::getCreationTime).thenComparing(File::getGetPath))
+    .sorted(Comparator.comparing(File::getCreationTime).thenComparing(File::getPath))
     .collect(Collectors.toList());
 ```
 

@@ -13,7 +13,7 @@ upper case. Such an operation might look similar to the following:
 
 ``` java
 List<String> normalizeStrings(List<String> input) {
-    return input
+    return input.stream()
             .map(String::toUpperCase)
             .collect(Collectors.toList());
 }
@@ -29,7 +29,7 @@ single stream. Such an operation might look similar to the following:
 
 ``` java
 Set<PhoneNumber> getAllPhoneNumbers(List<Employee> input) {
-    return input
+    return input.stream()
             .flatMap(employee -> employee.getPhoneNumbers().stream())
             .collect(Collectors.toSet());
 }
